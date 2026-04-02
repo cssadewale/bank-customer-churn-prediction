@@ -1,0 +1,16 @@
+# ──────────────────────────────────────────────────────────────────────────────
+# requirements.txt — Streamlit Cloud Deployment
+# Bank Customer Churn Prediction
+# Author : Adewale Samson Adeagbo
+# GitHub : https://github.com/cssadewale
+#
+# These are the ONLY packages Streamlit Cloud needs to run app.py.
+# Keep this file lean — every extra package slows down the cold-start time.
+# ──────────────────────────────────────────────────────────────────────────────
+
+streamlit>=1.32.0
+pandas>=2.0.0
+numpy>=1.24.0
+scikit-learn>=1.3.0
+matplotlib>=3.7.0
+joblib>=1.3.0
