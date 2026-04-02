@@ -1,0 +1,33 @@
+# ──────────────────────────────────────────────────────────────────────────────
+# Bank Customer Churn Prediction — Python Dependencies
+# Author : Adewale Samson Adeagbo
+# GitHub : https://github.com/cssadewale
+# ──────────────────────────────────────────────────────────────────────────────
+#
+# Install all dependencies with:
+#   pip install -r requirements.txt
+#
+# Tested on Python 3.10
+# ──────────────────────────────────────────────────────────────────────────────
+
+# ── Core Data Science ─────────────────────────────────────────────────────────
+pandas>=2.0.0
+numpy>=1.24.0
+
+# ── Machine Learning ──────────────────────────────────────────────────────────
+scikit-learn>=1.3.0
+
+# ── Visualisation ─────────────────────────────────────────────────────────────
+matplotlib>=3.7.0
+seaborn>=0.12.0
+
+# ── Model Serialisation ───────────────────────────────────────────────────────
+joblib>=1.3.0
+
+# ── Dataset Download ──────────────────────────────────────────────────────────
+gdown>=4.7.0
+
+# ── Notebook Environment ──────────────────────────────────────────────────────
+jupyter>=1.0.0
+ipykernel>=6.0.0
+ipython>=8.0.0
