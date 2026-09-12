@@ -16,3 +16,8 @@ These files must remain in the repository's `models/` directory:
 models/best_gradient_boosting_churn_model.joblib
 models/standard_scaler.joblib
 ```
+
+
+## NumPy artifact compatibility update
+
+The saved joblib artifacts reference NumPy 2.x internals (`numpy._core` and `numpy.random._pickle`). The deployment now pins NumPy 2.2.6 and scikit-learn 1.6.1. The former NumPy 1.26/scikit-learn 1.5 combination caused `MT19937 is not a known BitGenerator module` during unpickling.
