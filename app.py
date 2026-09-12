@@ -9,8 +9,6 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import joblib
-import matplotlib.pyplot as plt
-import matplotlib.patches as mpatches
 from pathlib import Path
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -22,6 +20,11 @@ st.set_page_config(
     layout     = "wide",
     initial_sidebar_state = "expanded"
 )
+
+# Render a lightweight page marker before any optional plotting dependency is
+# imported. This keeps the dashboard available even if plotting initialization
+# is slow or incompatible with a deployment image.
+st.caption("Bank Churn Predictor is ready.")
 
 # ─────────────────────────────────────────────────────────────────────────────
 # LOAD MODEL & SCALER  (cached so they are only loaded once per session)
@@ -186,6 +189,7 @@ def get_top_risk_drivers(input_df):
 
 
 def plot_gauge(probability):
+    import matplotlib.pyplot as plt
     """Draw a simple semicircular gauge chart for the churn probability."""
     fig, ax = plt.subplots(figsize=(4, 2.2), subplot_kw={"aspect": "equal"})
     fig.patch.set_facecolor("#0F172A")
@@ -216,6 +220,8 @@ def plot_gauge(probability):
 
 
 def plot_feature_importance():
+    import matplotlib.pyplot as plt
+    import matplotlib.patches as mpatches
     """Horizontal bar chart of all 11 feature importances."""
     features = list(FEATURE_IMPORTANCE.keys())
     values   = list(FEATURE_IMPORTANCE.values())
