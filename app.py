@@ -46,11 +46,23 @@ def load_artifacts():
     BASE_DIR    = Path(__file__).resolve().parent
     models_dir  = BASE_DIR / "models"
 
-    model  = joblib.load(models_dir / "best_gradient_boosting_churn_model.joblib")
-    scaler = joblib.load(models_dir / "standard_scaler.joblib")
+    model_path = models_dir / "best_gradient_boosting_churn_model.joblib"
+    scaler_path = models_dir / "standard_scaler.joblib"
+    if not model_path.exists() or not scaler_path.exists():
+        raise FileNotFoundError(
+            "Expected model and scaler files in the repository models/ folder"
+        )
+    model  = joblib.load(model_path)
+    scaler = joblib.load(scaler_path)
+    if list(model.feature_names_in_) != FEATURE_COLS:
+        raise ValueError("Model feature schema does not match FEATURE_COLS")
+    if list(scaler.feature_names_in_) != COLS_TO_SCALE:
+        raise ValueError("Scaler feature schema does not match COLS_TO_SCALE")
     return model, scaler
 
-model, scaler = load_artifacts()
+# Lazy loading keeps the dashboard renderable if an artifact is missing or
+# incompatible; the error is shown when the user requests a prediction.
+model, scaler = None, None
 
 # ─────────────────────────────────────────────────────────────────────────────
 # FEATURE METADATA
