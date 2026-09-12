@@ -432,6 +432,13 @@ st.markdown("<br>", unsafe_allow_html=True)
 # ─────────────────────────────────────────────────────────────────────────────
 if predict_btn:
 
+    try:
+        with st.spinner("Loading the churn model..."):
+            model, scaler = load_artifacts()
+    except Exception as exc:
+        st.error(f"❌ Churn model could not be loaded: {type(exc).__name__}: {exc}")
+        st.stop()
+
     # Build input and run prediction
     input_df    = build_input_dataframe(
         credit_score, age, tenure, balance, num_of_products,
